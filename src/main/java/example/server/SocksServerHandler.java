@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package example;
+package example.server;
 
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -52,6 +52,7 @@ public final class SocksServerHandler extends SimpleChannelInboundHandler<SocksM
                 }
                 break;
             case SOCKS5:
+                System.out.println("sock5!!!!!!!!!!!!!!!!!!!!!!!");
                 if (socksRequest instanceof Socks5InitialRequest) {
                     // auth support example
                     //ctx.pipeline().addFirst(new Socks5PasswordAuthRequestDecoder());
