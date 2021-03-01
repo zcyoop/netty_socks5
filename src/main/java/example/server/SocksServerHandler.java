@@ -52,7 +52,6 @@ public final class SocksServerHandler extends SimpleChannelInboundHandler<SocksM
                 }
                 break;
             case SOCKS5:
-                System.out.println("sock5!!!!!!!!!!!!!!!!!!!!!!!");
                 if (socksRequest instanceof Socks5InitialRequest) {
                     // auth support example
                     //ctx.pipeline().addFirst(new Socks5PasswordAuthRequestDecoder());
@@ -63,6 +62,8 @@ public final class SocksServerHandler extends SimpleChannelInboundHandler<SocksM
                     ctx.pipeline().addFirst(new Socks5CommandRequestDecoder());
                     ctx.write(new DefaultSocks5PasswordAuthResponse(Socks5PasswordAuthStatus.SUCCESS));
                 } else if (socksRequest instanceof Socks5CommandRequest) {
+                    System.out.println("来了一条消息！！！");
+                    System.out.println(socksRequest);
                     Socks5CommandRequest socks5CmdRequest = (Socks5CommandRequest) socksRequest;
                     if (socks5CmdRequest.type() == Socks5CommandType.CONNECT) {
                         ctx.pipeline().addLast(new SocksServerConnectHandler());
